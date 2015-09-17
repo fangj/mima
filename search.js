@@ -4,6 +4,7 @@ var sequelize = new Sequelize('sqlite://tangall.sqlite');
 var Poetries = sequelize.define('poetries', {
     id: {field: 'id',type: Sequelize.INTEGER, primaryKey: true,uniqueKey:true },
     poet_id:Sequelize.INTEGER,
+    poet:Sequelize.STRING,
     title:Sequelize.STRING,
     content:Sequelize.STRING,
 }, {
@@ -22,7 +23,7 @@ var Poet=sequelize.define('poets', {
   updatedAt   : 'updated_at',
 });
 
-Poetries.belongsTo(Poet, {foreignKey: 'poet_id', targetKey: 'id'});
+//Poetries.belongsTo(Poet, {foreignKey: 'poet_id', targetKey: 'id'});
 
 // Poetries.findOne().then(function(poetry){
 // 	console.log(poetry.get({plain:true}));
