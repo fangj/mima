@@ -13,7 +13,6 @@ var Poetries = sequelize.define('poetries', {
   updatedAt   : 'updated_at',
 });
 
-
 var Poet=sequelize.define('poets', {
     id: {field: 'id',type: Sequelize.INTEGER, primaryKey: true,uniqueKey:true },
     name:Sequelize.STRING
@@ -23,34 +22,11 @@ var Poet=sequelize.define('poets', {
   updatedAt   : 'updated_at',
 });
 
-//Poetries.belongsTo(Poet, {foreignKey: 'poet_id', targetKey: 'id'});
-
-// Poetries.findOne().then(function(poetry){
-// 	console.log(poetry.get({plain:true}));
-// 	poetry.getPoet().then(function(poet){
-// 		console.log(poet.get({plain:true}));
-// 	});
-// });
-
-// Poet.findOne().then(function(poet){
-// 	console.log(poet.get({plain:true}));
-// });
-
-// Poetries.findOne({
-// 	where:{content: {$like: '%兴业%'}}
-// }).then(function(poetry){
-// 	console.log(poetry.get({plain:true}));
-// });
-
 function getPoetry(keyword){
 	return Poetries.findOne({
 	where:{content: {$like: '%'+keyword+'%'}}
 	});
 }
-
-// getPoet('兴业').then(function(poetry){
-// 		console.log(poetry.get({plain:true}));
-// 	});
 
 module.exports={
 	getPoetry:getPoetry
