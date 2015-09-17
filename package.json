@@ -1,0 +1,15 @@
+{
+  "name": "mima",
+  "version": "1.0.0",
+  "description": " 唐诗密码本",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Fang Jian",
+  "license": "ISC",
+  "dependencies": {
+    "sequelize": "^3.8.0",
+    "sqlite3": "^3.1.0"
+  }
+}
