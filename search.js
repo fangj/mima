@@ -22,6 +22,7 @@ var Poet=sequelize.define('poets', {
   updatedAt   : 'updated_at',
 });
 
+Poetries.belongsTo(Poet, {foreignKey: 'poet_id'});
 
 Poetries.findOne().then(function(poetry){
 	console.log(poetry.get({plain:true}));
