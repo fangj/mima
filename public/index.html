@@ -1,17 +1,63 @@
 <!DOCTYPE html>
 <html>
-  <head>
-  	<meta charset="utf-8">
+
+<head>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>唐诗密码本</title>
-	<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  </head>
-  <body>
-    <h1>唐诗密码本</h1>
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <style type="text/css">
+    html,
+    body {
+        height: 100%;
+        background: #7ecdf4;
+        background: -moz-linear-gradient(left, #7ecdf4 0%, #13ffbf 100%);
+        background: -webkit-gradient(linear, left top, right top, color-stop(0%, #7ecdf4), color-stop(100%, #13ffbf));
+        background: -webkit-linear-gradient(left, #7ecdf4 0%, #13ffbf 100%);
+        background: -o-linear-gradient(left, #7ecdf4 0%, #13ffbf 100%);
+        background: -ms-linear-gradient(left, #7ecdf4 0%, #13ffbf 100%);
+        background: linear-gradient(to right, #7ecdf4 0%, #13ffbf 100%);
+        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#7ecdf4', endColorstr='#13ffbf', GradientType=1);
+    }
+    </style>
+</head>
 
+<body ng-app="myapp" ng-controller="mycont">
+    <div class="container-fluid">
+        <h1 class="text-center">唐诗密码本</h1>
+        <form ng-submit="submit()">
+            <input class="form-control input-lg" type="text" placeholder="写一个关键词" ng-model="keyword">
+            <input class="btn btn-success btn-lg center-block" style="margin-top: 10px" type="submit" value="生成密码">
+        </form>
+        <div ng-show="p.mima">
+	        <h2 class="text-center">{{p.mima}}</h2>
+	        <h2 class="text-center">{{p.line}}</h2>
+	        <input class="btn btn-info btn-lg center-block" style="margin-top: 10px" type="submit" value="欣赏全诗" ng-click="showPoetry()">
+	        <div ng-show="p.show">
+	        	<div>{{p.title}}</div>
+		        <div>{{p.poet}}</div>
+		        <div>{{p.content}}</div>
+	        </div>
+        </div>
+    </div>
+    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="//cdn.bootcss.com/angular.js/1.4.5/angular.min.js"></script>
+    <script type="text/javascript">
+    angular.module("myapp",[]).controller("mycont",function($scope,$http){
+    	$scope.p={};
+		$scope.submit=function () {
+			console.log('submit',$scope.keyword);
+			$http.get('/mima/'+$scope.keyword).success(function(poetry){
+				$scope.p=poetry;
+			});
+		}
+		$scope.showPoetry=function  () {
+			$scope.p.show=true;
+		}
+    })
+    </script>
+</body>
 
-	<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
-	<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  </body>
 </html>
