@@ -24,15 +24,22 @@ var Poet=sequelize.define('poets', {
 
 Poetries.belongsTo(Poet, {foreignKey: 'poet_id', targetKey: 'id'});
 
-Poetries.findOne().then(function(poetry){
-	console.log(poetry.get({plain:true}));
-	poetry.getPoet().then(function(poet){
-		console.log(poet.get({plain:true}));
-	});
-});
+// Poetries.findOne().then(function(poetry){
+// 	console.log(poetry.get({plain:true}));
+// 	poetry.getPoet().then(function(poet){
+// 		console.log(poet.get({plain:true}));
+// 	});
+// });
 
 // Poet.findOne().then(function(poet){
 // 	console.log(poet.get({plain:true}));
 // });
+
+Poetries.findOne({
+	where:{content: {$like: '%兴业%'}}
+}).then(function(poetry){
+	console.log(poetry.get({plain:true}));
+});
+
 
 
