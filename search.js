@@ -42,7 +42,7 @@ var Poet=sequelize.define('poets', {
 // 	console.log(poetry.get({plain:true}));
 // });
 
-function getPoet(keyword){
+function getPoetry(keyword){
 	return Poetries.findOne({
 	where:{content: {$like: '%'+keyword+'%'}}
 	});
@@ -53,5 +53,5 @@ function getPoet(keyword){
 // 	});
 
 module.exports={
-	getPoet:getPoet
+	getPoetry:getPoetry
 };
