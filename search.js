@@ -36,11 +36,18 @@ var Poet=sequelize.define('poets', {
 // 	console.log(poet.get({plain:true}));
 // });
 
-Poetries.findOne({
-	where:{content: {$like: '%兴业%'}}
-}).then(function(poetry){
-	console.log(poetry.get({plain:true}));
-});
+// Poetries.findOne({
+// 	where:{content: {$like: '%兴业%'}}
+// }).then(function(poetry){
+// 	console.log(poetry.get({plain:true}));
+// });
 
+function getPoet(keyword){
+	return Poetries.findOne({
+	where:{content: {$like: '%'+keyword+'%'}}
+	});
+}
 
-
+getPoet('兴业').then(function(poetry){
+		console.log(poetry.get({plain:true}));
+	});
