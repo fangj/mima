@@ -22,14 +22,17 @@ var Poet=sequelize.define('poets', {
   updatedAt   : 'updated_at',
 });
 
-Poetries.belongsTo(Poet, {foreignKey: 'poet_id'});
+Poetries.belongsTo(Poet, {foreignKey: 'poet_id', targetKey: 'id'});
 
 Poetries.findOne().then(function(poetry){
 	console.log(poetry.get({plain:true}));
+	poetry.getPoet().then(function(poet){
+		console.log(poet.get({plain:true}));
+	});
 });
 
-Poet.findOne().then(function(poet){
-	console.log(poet.get({plain:true}));
-});
+// Poet.findOne().then(function(poet){
+// 	console.log(poet.get({plain:true}));
+// });
 
 
