@@ -12,17 +12,29 @@ var Poetries = sequelize.define('poetries', {
   updatedAt   : 'updated_at',
 });
 
+
+
+function randomId(){
+	var total=43030;
+	return Math.floor(Math.random()*total);
+}
 function getPoetry(keyword){
-	return Poetries.findOne({
-		where:{content: {$like: '%'+keyword+'%'}}
+	return getPoetryByKeyword(keyword).then(function(poetryEntity) {
+		return poetryEntity?poetryEntity:getRandomPoetry();
 	});
 }
 
-function getRandomPoetry(keyword){
-	var total=43030;
-	var randomId=Math.floor(Math.random()*total);
+function getPoetryByKeyword(keyword){
+	var rId=randomId(); //随机起始位置
 	return Poetries.findOne({
-		where:{id: randomId}
+		where:{content: {$like: '%'+keyword+'%'},id:{$gt:rId}}
+	});
+}
+
+function getRandomPoetry(){
+	var rId=randomId();
+	return Poetries.findOne({
+		where:{id: rId}
 	});
 }
 
