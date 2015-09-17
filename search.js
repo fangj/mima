@@ -14,10 +14,19 @@ var Poetries = sequelize.define('poetries', {
 
 function getPoetry(keyword){
 	return Poetries.findOne({
-	where:{content: {$like: '%'+keyword+'%'}}
+		where:{content: {$like: '%'+keyword+'%'}}
+	});
+}
+
+function getRandomPoetry(keyword){
+	var total=43030;
+	var randomId=Math.floor(Math.random()*total);
+	return Poetries.findOne({
+		where:{id: randomId}
 	});
 }
 
 module.exports={
-	getPoetry:getPoetry
+	getPoetry:getPoetry,
+	getRandomPoetry:getRandomPoetry
 };
