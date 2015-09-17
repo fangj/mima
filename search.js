@@ -1,6 +1,6 @@
 'use strict';
 var Sequelize=require('sequelize');
-var sequelize = new Sequelize('sqlite://tangall.sqlite');
+var sequelize = new Sequelize('sqlite://tangall.sqlite',{logging: false});
 var Poetries = sequelize.define('poetries', {
     id: {field: 'id',type: Sequelize.INTEGER, primaryKey: true,uniqueKey:true },
     poet_id:Sequelize.INTEGER,
@@ -48,6 +48,10 @@ function getPoet(keyword){
 	});
 }
 
-getPoet('兴业').then(function(poetry){
-		console.log(poetry.get({plain:true}));
-	});
+// getPoet('兴业').then(function(poetry){
+// 		console.log(poetry.get({plain:true}));
+// 	});
+
+module.exports={
+	getPoet:getPoet
+};
