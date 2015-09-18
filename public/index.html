@@ -27,15 +27,19 @@
 
 <body ng-app="myapp" ng-controller="mycont">
     <div class="container-fluid">
-        <h1 class="text-center">唐诗密码本</h1>
+        <h1 class="text-center" style="margin-bottom: 50px">唐诗密码本</h1>
         <form ng-submit="submit()">
-            <input class="form-control input-lg" type="text" placeholder="写一个关键词,不写也行" ng-model="keyword">
-            <input class="btn btn-success btn-lg center-block" style="margin-top: 10px" type="submit" value="生成密码">
+            <input class="form-control input-lg" style="margin-bottom: 30px;" type="text" placeholder="写一个关键词,不写也行" ng-model="keyword">
+            <div style="text-align: center">
+                <input class="btn btn-success btn-lg " style="margin-top: 10px;" type="submit" value="生成密码">
+            </div>
         </form>
         <div ng-show="p.mima">
 	        <h2 class="text-center">{{p.mima}}</h2>
-	        <h2 class="text-center">{{p.line}}</h2>
-	        <input class="btn btn-info btn-lg center-block" style="margin: 40px auto" type="submit" value="欣赏全诗" ng-click="showPoetry()">
+	        <h2 class="text-center" ng-repeat="part in p.line_parts">{{part}}</h2>
+            <div style="text-align: center">
+	        <input class="btn btn-info btn-lg" style="margin: 40px auto" type="submit" value="欣赏全诗" ng-click="showPoetry()">
+            </div>
 	        <div ng-show="p.show">
 	        	<h3 class="text-center">{{p.title}}</h3>
 		        <div class="text-center">{{p.poet}}</div>
@@ -55,6 +59,7 @@
 			$http.get('/mima/'+$scope.keyword).success(function(poetry){
 				$scope.p=poetry;
                 $scope.p.lines=poetry.content.split("。");
+                $scope.p.line_parts=poetry.line.split("，");
 			});
 		}
 		$scope.showPoetry=function  () {
