@@ -32,10 +32,4 @@ http://mima.treenote.net/
 * <https://github.com/hxgdzyuyi/tang_poetry>
 * <https://github.com/hotoo/pinyin>
 
-### 关于我
 
-方健,湖建血统的南京土著. 养着一只肥白的中华田园猫. 有很多有趣的想法,就是没空做T T. 
-
-加微信的同学请给我发红包. 谢谢! 
-
-![微信](public/images/wechat_fangjian.jpg)
