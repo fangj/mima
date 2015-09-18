@@ -11,14 +11,16 @@
     html,
     body {
         height: 100%;
-        background: #7ecdf4;
-        background: -moz-linear-gradient(left, #7ecdf4 0%, #13ffbf 100%);
-        background: -webkit-gradient(linear, left top, right top, color-stop(0%, #7ecdf4), color-stop(100%, #13ffbf));
-        background: -webkit-linear-gradient(left, #7ecdf4 0%, #13ffbf 100%);
-        background: -o-linear-gradient(left, #7ecdf4 0%, #13ffbf 100%);
-        background: -ms-linear-gradient(left, #7ecdf4 0%, #13ffbf 100%);
-        background: linear-gradient(to right, #7ecdf4 0%, #13ffbf 100%);
-        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#7ecdf4', endColorstr='#13ffbf', GradientType=1);
+        background: #ccb785;
+        background: -moz-linear-gradient(top,  #ccb785 0%, #dac492 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ccb785), color-stop(100%,#dac492));
+        background: -webkit-linear-gradient(top,  #ccb785 0%,#dac492 100%);
+        background: -o-linear-gradient(top,  #ccb785 0%,#dac492 100%);
+        background: -ms-linear-gradient(top,  #ccb785 0%,#dac492 100%);
+        background: linear-gradient(to bottom,  #ccb785 0%,#dac492 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ccb785', endColorstr='#dac492',GradientType=0 );
+        color:#553A29;
+
     }
     </style>
 </head>
@@ -27,7 +29,7 @@
     <div class="container-fluid">
         <h1 class="text-center">唐诗密码本</h1>
         <form ng-submit="submit()">
-            <input class="form-control input-lg" type="text" placeholder="写一个关键词" ng-model="keyword">
+            <input class="form-control input-lg" type="text" placeholder="写一个关键词,不写也行" ng-model="keyword">
             <input class="btn btn-success btn-lg center-block" style="margin-top: 10px" type="submit" value="生成密码">
         </form>
         <div ng-show="p.mima">
@@ -35,9 +37,10 @@
 	        <h2 class="text-center">{{p.line}}</h2>
 	        <input class="btn btn-info btn-lg center-block" style="margin: 40px auto" type="submit" value="欣赏全诗" ng-click="showPoetry()">
 	        <div ng-show="p.show">
-	        	<div>{{p.title}}</div>
-		        <div>{{p.poet}}</div>
-		        <div>{{p.content}}</div>
+	        	<h3 class="text-center">{{p.title}}</h3>
+		        <div class="text-center">{{p.poet}}</div>
+		        <!-- <h4>{{p.content}}</h4> -->
+                <h4  class="text-center" ng-repeat="line in p.lines">{{line}}</h4>
 	        </div>
         </div>
     </div>
@@ -51,6 +54,7 @@
 			console.log('submit',$scope.keyword);
 			$http.get('/mima/'+$scope.keyword).success(function(poetry){
 				$scope.p=poetry;
+                $scope.p.lines=poetry.content.split("。");
 			});
 		}
 		$scope.showPoetry=function  () {
