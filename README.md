@@ -3,7 +3,9 @@
 ![ss](screenshot/screenshot01.png)
 
 ### 演示
-http://mima.treenote.net/
+http://mima.treenote.net/  
+手机扫码打开  
+![ss](screenshot/mima.png)
 
 ### 怎么使用?
 
