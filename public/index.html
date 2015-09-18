@@ -25,36 +25,23 @@
     </style>
 </head>
 
-<body ng-app="myapp" ng-controller="mycont">
-    <div class="container-fluid">
-        <h1 class="text-center" style="margin-bottom: 50px">唐诗密码本
-        <span ng-click="info()" class="glyphicon glyphicon-info-sign"/></h1>
-        <form ng-submit="submit()">
-            <input class="form-control input-lg" style="margin-bottom: 30px;" type="text" placeholder="给我一个灵感词,不给也行" ng-model="keyword">
-            <div style="text-align: center">
-                <input class="btn btn-success btn-lg " style="margin-top: 10px;" type="submit" value="生成密码">
-            </div>
-        </form>
-        <div ng-show="p.mima">
-	        <h2 class="text-center" style="font-family:serif;">{{p.mima}}</h2>
-	        <h2 class="text-center" ng-repeat="part in p.line_parts">{{part}}</h2>
-            <div style="text-align: center">
-	        <input class="btn btn-info btn-lg" style="margin-top: 40px" type="submit" value="欣赏全诗" ng-click="showPoetry()">
-            </div>
-	        <div ng-show="p.show">
-	        	<h3 class="text-center">{{p.title}}</h3>
-		        <div class="text-center">{{p.poet}}</div>
-		        <!-- <h4>{{p.content}}</h4> -->
-                <h4  class="text-center" ng-repeat="line in p.lines">{{line}}</h4>
-                <div style="height:50px"></div>
-	        </div>
-        </div>
+<body ng-app="myapp">
+    <div class="container-fluid" ng-view>
+        
     </div>
     <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
     <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="//cdn.bootcss.com/angular.js/1.4.5/angular.min.js"></script>
+    <script src="//cdn.bootcss.com/angular.js/1.4.5/angular-route.min.js"></script>
     <script type="text/javascript">
-    angular.module("myapp",[]).controller("mycont",function($scope,$http){
+    var myapp=angular.module("myapp",['ngRoute']);
+    myapp.config(function($routeProvider){
+        $routeProvider.
+        when('/',{controller:'main',templateUrl:'views/main.html'}).
+        when('/about',{controller:'about',templateUrl:'views/about.html'}).
+        otherwise({redirectTo:'/'});
+    });
+    myapp.controller("main",function($scope,$http){
     	$scope.p={};
 		$scope.submit=function () {
 			console.log('submit',$scope.keyword);
@@ -67,10 +54,10 @@
 		$scope.showPoetry=function  () {
 			$scope.p.show=true;
 		}
-        $scope.info=function(){
-            alert("info click");
-        }
-    })
+    });
+    myapp.controller("about",function($scope){
+
+    });
     </script>
 </body>
 
