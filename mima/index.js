@@ -7,7 +7,7 @@ var mima=require('./mima');
 function genPoetry(req, res, next){
 	var keyword=req.params.keyword;
   	mima.mima(keyword).then(function(poetry){
-		console.log(poetry);
+		//console.log(poetry);
 		res.send(poetry);
 	});
 }
