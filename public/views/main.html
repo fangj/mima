@@ -1,0 +1,22 @@
+<h1 class="text-center" style="margin-bottom: 50px">唐诗密码本
+        <a href="#/about" class="glyphicon glyphicon-info-sign"/></h1>
+<form ng-submit="submit()">
+    <input class="form-control input-lg" style="margin-bottom: 30px;" type="text" placeholder="给我一个灵感词,不给也行" ng-model="keyword">
+    <div style="text-align: center">
+        <input class="btn btn-success btn-lg " style="margin-top: 10px;" type="submit" value="生成密码">
+    </div>
+</form>
+<div ng-show="p.mima">
+    <h2 class="text-center" style="font-family:serif;">{{p.mima}}</h2>
+    <h2 class="text-center" ng-repeat="part in p.line_parts">{{part}}</h2>
+    <div style="text-align: center">
+        <input class="btn btn-info btn-lg" style="margin-top: 40px" type="submit" value="欣赏全诗" ng-click="showPoetry()">
+    </div>
+    <div ng-show="p.show">
+        <h3 class="text-center">{{p.title}}</h3>
+        <div class="text-center">{{p.poet}}</div>
+        <!-- <h4>{{p.content}}</h4> -->
+        <h4 class="text-center" ng-repeat="line in p.lines">{{line}}</h4>
+        <div style="height:50px"></div>
+    </div>
+</div>
