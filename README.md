@@ -1,5 +1,7 @@
 # 唐诗密码本
 
+![ss](screenshot/screenshot01.png)
+
 ### 怎么使用?
 
 如果你不知道怎么编一个复杂的密码,那么随机生成一个. 比如"SDSGB9H". 可是这是个什么鬼怎么记?! 来,背一句唐诗就好了. "上帝深宫闭九阍". 拼音首字就是. 而且有数字的哦. 密码级别很高的. 如果有天忘了,凭模糊的印象去翻李商隐的诗集. 或许能找出来的.
@@ -11,6 +13,12 @@
 ### 开源项目
 
 这是一个开源项目, <https://github.com/fangj/mima>, 用 express,angular 搭建. 欢迎小伙伴到 github 上点小星星.
+
+### 开发者
+
+    npm install
+    npm start
+    访问 http://localhost:3000
 
 ### 感谢
 
