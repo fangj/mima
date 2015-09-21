@@ -55,6 +55,9 @@ function translateNumber(line){
 	var tNum={
 		'壹':1,'贰':2,'叁':3,'肆':4,'伍':5,'陆':6,'柒':7,'捌':8,'玖':9
 	};
+	var other={
+		'两':2,'双':2,'十':10,'百':100,'佰':100,'千':'1k','万':'10k'
+	};
 	var key;
 	for( key  in  sNum){
     	line=replaceAll(key,sNum[key],line);
@@ -62,12 +65,28 @@ function translateNumber(line){
 	for( key  in  tNum){
     	line=replaceAll(key,tNum[key],line);
 	}
+	for( key  in  other){
+    	line=replaceAll(key,other[key],line);
+	}
+	return line;
+}
+
+function translateOther(line){
+	var other={
+		'井':'#','在':'@','钱':'$','上':'^','和':'&','星':'*','减':'-','底':'_','下':'_','等':'=','加':'+','点':'.','问':'?'
+	};
+	var key;
+	for( key  in  other){
+    	line=replaceAll(key,other[key],line);
+	}
 	return line;
 }
 
 function toMima(line){
 	// 替换汉字为数字
 	line= translateNumber(line);
+	// 替换汉字为其他字符
+	line= translateOther(line);
 	// 替换汉字为拼音首字
 	var py=pinyin(line,{style:pinyin.STYLE_FIRST_LETTER});
 	// 大写
