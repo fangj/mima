@@ -41,8 +41,9 @@
     <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="//cdn.bootcss.com/angular.js/1.4.5/angular.min.js"></script>
     <script src="//cdn.bootcss.com/angular.js/1.4.5/angular-route.min.js"></script>
+    <script src="javascripts/dirDisqus.js"></script>
     <script type="text/javascript">
-    var myapp=angular.module("myapp",['ngRoute']);
+    var myapp=angular.module("myapp",['ngRoute','angularUtils.directives.dirDisqus']);
     myapp.config(function($routeProvider){
         $routeProvider.
         when('/',{controller:'main',templateUrl:'views/main.html'}).
